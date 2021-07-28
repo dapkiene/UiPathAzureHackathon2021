@@ -1,0 +1,58 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+
+#- task: DockerCompose@0
+#  inputs:
+#    containerregistrytype: 'Azure Container Registry'
+#    azureSubscription: 'Visual Studio Professional Subscription(9afa84ea-ab42-483b-aa82-2804dcc5f901)'
+#    azureContainerRegistry: '{"loginServer":"uipathimageregistry.azurecr.io", "id" : "/subscriptions/9afa84ea-ab42-483b-aa82-2804dcc5f901/resourceGroups/DataFactoryTesting_RG/providers/Microsoft.ContainerRegistry/registries/uipathimageregistry"}'
+#    dockerComposeFile: '**/docker-compose.yml'
+#    action: 'Build services'
+#    nopIfNoDockerComposeFile: true
+# https://aka.ms/yaml
+- task: Docker@2
+  inputs:
+    containerRegistry: 'AzureContainerRegistry'
+    repository: 'uipathimageregistry'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  #azureSubscription: 'Visual Studio Professional Subscription(9afa84ea-ab42-483b-aa82-2804dcc5f901)'
+  dockerRegistryServiceConnection: "d81e1a7d-6a5e-4f9a-9018-1132b200ab2c"
+  imageRepository: "uipathimageregistry"
+  containerRegistry: "uipathimageregistry.azurecr.io"
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+stages:
+  - stage: Build
+    displayName: Build and push stage
+    jobs:
+    - job: Build
+      displayName: Build
+      pool:
+        vmImage: $(vmImageName)
+      steps:
+      - task: Docker@2
+        displayName: Build and push an image to container registry
+        inputs:
+          command: buildAndPush
+          repository: $(imageRepository)
+          dockerfile: $(dockerfilePath)
+          containerRegistry: $(dockerRegistryServiceConnection)
+          tags: 
+            $(tag)
+
+
