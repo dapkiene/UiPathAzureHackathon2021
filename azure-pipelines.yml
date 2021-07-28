@@ -21,7 +21,8 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 9afa84ea-ab42-483b-aa82-2804dcc5f901
+  azureSubscription: 'Visual Studio Professional Subscription(9afa84ea-ab42-483b-aa82-2804dcc5f901)'
+  dockerRegistryServiceConnection: '{"loginServer":"uipathimageregistry.azurecr.io", "id" : "/subscriptions/9afa84ea-ab42-483b-aa82-2804dcc5f901/resourceGroups/DataFactoryTesting_RG/providers/Microsoft.ContainerRegistry/registries/uipathimageregistry"}'
   imageRepository: "uipathimageregistry"
   containerRegistry: "uipathimageregistry.azurecr.io"
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
