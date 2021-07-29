@@ -4,5 +4,3 @@
     Start-Process C:\\UiPathStudio.msi -ArgumentList "ADDLOCAL = DesktopFeature, Robot APPLICATIONFOLDER=C:\\UiPath" -Wait; \
     Remove-Item "C:\\UiPathStudio.msi" -Force
  CMD ["cmd"]
-
- mkdir C:\\UiPath
