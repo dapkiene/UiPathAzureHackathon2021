@@ -43,3 +43,10 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - script: dir
+    - script: dir D:\
+    - script: dir D:\a\
+    - script: dir D:\a\1
+    - script: dir D:\a\1\s
+    - script: dir C:\
+    - script: dir C:\UiPath
