@@ -33,8 +33,7 @@ stages:
     - script: dir D:\
     - script: dir D:\a\
     - script: dir D:\a\1
-    - script: dir C:\
-    - script: dir C:\UiPath
+    - script: dir D:\a\1\s
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
