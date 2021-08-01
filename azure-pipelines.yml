@@ -49,6 +49,6 @@ stages:
     - script: dir C:\Users
     - script: dir C:\Temp
     - script: dir C:\Packages
-    - script: dir C:\data
     - script: dir "C:\Program Files"
+    - script: dir "C:\Program Files (x86)"
     #- script: dir C:\UiPath
