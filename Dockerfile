@@ -1,4 +1,5 @@
-FROM uipath/robot:2018.4.1
+FROM arms3/uipath-robot:latest
+# uipath/robot:2018.4.1
 
  # New-Item -Path "C:\UiPath" -ItemType "directory"; \
 # RUN PowerShell -Command New-Item -Path "C:\UiPath" -ItemType "directory"; \
