@@ -45,8 +45,8 @@ stages:
     - script: dir C:\Users
     - script: dir C:\Users\.
     - script: dir C:\Users\Public
-    - script: dir C:\Users\Public\AppData
-    - script: dir C:\Users\AppData
+    # - script: dir C:\Users\Public\AppData
+    # - script: dir C:\Users\AppData
     - script: dir C:\Packages
     - script: dir "C:\Program Files"
     - script: dir "C:\Program Files (x86)"
