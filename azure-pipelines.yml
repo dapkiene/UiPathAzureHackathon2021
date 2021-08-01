@@ -13,11 +13,11 @@ variables:
   dockerRegistryServiceConnection: 'b4a08944-6770-4c28-af3f-bac76ce9f424'
   imageRepository: 'uipathrobot'
   containerRegistry: 'uipathimageregistry.azurecr.io'
-  # dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
 
   # Agent VM image name
-  vmImageName: 'uipath/robot'
+  vmImageName: 'windows-latest' # 'uipath/robot'
 
 stages:
 - stage: Build
@@ -29,17 +29,12 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - script: dir
-    - script: dir D:\
-    - script: dir D:\a\
-    - script: dir D:\a\1
-    - script: dir D:\a\1\s
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
         command: buildAndPush
-        # repository: $(imageRepository)
-        # dockerfile: $(dockerfilePath)
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
