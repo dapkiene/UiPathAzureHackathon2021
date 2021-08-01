@@ -45,4 +45,10 @@ stages:
     - script: dir D:\a\1
     - script: dir D:\a\1\s
     - script: dir C:\
+    - script: dir C:\image
+    - script: dir C:\Program Files
+    - script: dir C:\Users
+    - script: dir C:\Temp
+    - script: dir C:\Packages
+    - script: dir C:\data
     #- script: dir C:\UiPath
