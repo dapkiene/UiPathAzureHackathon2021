@@ -1,9 +1,5 @@
 FROM arms3/uipath-robot:latest
-# uipath/robot:2018.4.1
-
- # New-Item -Path "C:\UiPath" -ItemType "directory"; \
-# RUN PowerShell -Command New-Item -Path "C:\UiPath" -ItemType "directory"; \
-   # Invoke-WebRequest "https://download.uipath.com/UiPathStudio.msi" -OutFile "C:\UiPathStudio.msi"; \
-   # Start-Process C:\UiPathStudio.msi -ArgumentList 'ADDLOCAL=DesktopFeature,Robot' -Wait; \
-   # Remove-Item "C:\UiPathStudio.msi" -Force
+RUN PowerShell -Command Install-PackageProvider -Name NuGet -Force; \
+    Register-PSRepository -Name UiPath -SourceLocation https://www.myget.org/F/uipath-dev/api/v2; \
+    Install-Module -Repository UiPath -Name UiPath.Powershell -Force
 CMD ["cmd"]
